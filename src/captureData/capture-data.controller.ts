@@ -6,7 +6,7 @@ export class CaptureDataController {
   constructor(private readonly capturadorService: CaptureDataService) {}
 
   @Post()
-  async captureData(@Body('toSaveInMongo') data: string) {
+  async captureData(@Body('data') data: string) {
     await this.capturadorService.captureData(data);
   }
 }
