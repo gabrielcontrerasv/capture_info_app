@@ -5,10 +5,11 @@ import axios from 'axios';
 export class AppService {
   async getAndRenderInfo(): Promise<string> {
     try {
-      const { data } = await axios.get(
-        process.env.EXTERNAL_SERVICE_URL ||
-          'http://localhost:6000/api/v1/store',
-      );
+      const { data } = await axios.get('http://localhost:4001/api/v1/store');
+
+      if (data.length < 1) {
+        return '<h1 style="text-align: center;">No hay registros en la base de datos</h1>';
+      }
 
       const html = `
       <h1 style="text-align: center;">Datos recibidos y Almacenados</h1>
@@ -29,7 +30,6 @@ export class AppService {
           .join('')}
       </table>
     `;
-
       return html;
     } catch (error) {
       console.error('Error al obtener datos del servicio externo', error);

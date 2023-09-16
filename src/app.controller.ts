@@ -7,6 +7,10 @@ export class AppController {
 
   @Get()
   getHello(): Promise<string> {
-    return this.appService.getAndRenderInfo();
+    try {
+      return this.appService.getAndRenderInfo();
+    } catch (e) {
+      console.log('error con extrayendo datos del servicio externo');
+    }
   }
 }
