@@ -6,8 +6,8 @@ import { producerDTO } from './DTO/data.dto';
 export class ProducerController {
   constructor(private readonly producerService: ProducerService) {}
 
-  @Post('producer')
+  @Post('/fields')
   async captureData(@Body() body: producerDTO) {
-    return await this.producerService.sendData(body.data);
+    return await this.producerService.sendData(body);
   }
 }
