@@ -5,7 +5,9 @@ import axios from 'axios';
 export class AppService {
   async getAndRenderInfo(): Promise<string> {
     try {
-      const { data } = await axios.get('http://localhost:4001/api/v1/store');
+      const { data } = await axios.get(
+        `${process.env.STORE_DATA_SERVICE_URL}/store`,
+      );
 
       if (data.length < 1) {
         return '<h1 style="text-align: center;">No hay registros en la base de datos</h1>';
